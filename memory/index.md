@@ -11,7 +11,7 @@ Devices/servers: macbookpro (development)
 Latest useful result: Python 3.12.12 environment, locked package installation, and scaffold CLI verified on 2026-10-03.
 Current blocker: None for the first synthetic engine. Pilot area, local observations, own software licence, and Google integration access remain unresolved.
 Repository: https://github.com/Blazkowiz47/population-simulator (public, branch `master`; local dir/package still `traffic-simulator`; no licence declared).
-Next action: Settle the rename of the local dir/package and the definition of "commute burden", then promote the household-first direction (`scratch/household-first-formulation.md`) into `decisions.md` and `docs/PLAN.md`. The older M1 items below assume the micro-corridor plan. Previously: Resolve M1 decisions D1–D9 in `scratch/m1-context-brief.md` and fix the plan defects it lists, then implement M1 in `docs/PLAN.md`: a deterministic straight-road fixture with motion, insertion/exit accounting, metrics, and physical checks.
+Next action: Choose the first city and agree the realism and validation targets for commute burden (time, money, income share, unpredictability, crowding), then promote the household-first direction (`scratch/household-first-formulation.md`) into `decisions.md` and `docs/PLAN.md`. The older M1 items below assume the micro-corridor plan. Previously: Resolve M1 decisions D1–D9 in `scratch/m1-context-brief.md` and fix the plan defects it lists, then implement M1 in `docs/PLAN.md`: a deterministic straight-road fixture with motion, insertion/exit accounting, metrics, and physical checks.
 
 ## Active Threads
 

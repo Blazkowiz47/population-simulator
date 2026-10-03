@@ -40,7 +40,8 @@ Labels: (S) Sushrut's statement; (F) researched fact, see evidence links; (I) Cl
 
 ## Still undecided
 
-- **Rename** to `population-simulator` or an alternative. A rename touches:
+- ~~Rename~~ settled 2026-10-03: GitHub repo is `population-simulator`; local folder stays `traffic-simulator` (see `decisions.md`).
+- (superseded) Rename to `population-simulator` or an alternative. A rename touches:
   - 23 references in 8 files;
   - the `traffic_simulator` package and `traffic-simulator` CLI;
   - `.venv` (needs `uv sync` after a move);
@@ -48,7 +49,7 @@ Labels: (S) Sushrut's statement; (F) researched fact, see evidence links; (I) Cl
   - the Claude project directory.
 
   It is cheapest now, before any commit.
-- **Definition of "commute burden":** time, money, share of income, reliability, crowding.
+- **Definition of "commute burden":** settled in part 2026-10-03. It measures time, money and income (Sushrut: "should measure all... time, money income"). Extended the same day: it also covers unpredictability and "all the issues", and should be realistic. Implied by "all the issues" but not yet confirmed: ownership costs count alongside per-trip costs. Proposed (Claude): report the dimensions side by side, per PLAN §7, rather than as one score. Other candidate issues not yet confirmed: access walk/heat/rain exposure, transfers, safety (especially women at night), seat availability.
 - **Adaptation in counterfactuals:** fixed plans, rerouting only, mode re-choice, or full replanning.
 - **First city.** Bengaluru has the richest open inputs: CMP with counts, GBA ward populations, unofficial GTFS. Hyderabad has the cleanest official bus GTFS.
 - **Whether junction-level questions stay** in a later phase or drop out.
@@ -63,4 +64,4 @@ Labels: (S) Sushrut's statement; (F) researched fact, see evidence links; (I) Cl
 
 ## Next action
 
-Get Sushrut's answers on the rename and the "commute burden" definition. Then promote the household-first ordering to `memory/decisions.md` and revise `docs/PLAN.md` milestones (M1 becomes population + meso, micro moves later), and update `memory/index.md`'s next action.
+Choose the first city and agree what 'realistic' must match (validation targets before fitting, per PLAN M8). Then promote the household-first ordering to `memory/decisions.md` and revise `docs/PLAN.md` milestones (M1 becomes population + meso, micro moves later), and update `memory/index.md`'s next action.
