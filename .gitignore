@@ -9,6 +9,9 @@ wheels/
 # Virtual environments
 .venv
 
+# macOS
+.DS_Store
+
 # Local credentials and generated simulation data
 .env
 .env.*
@@ -16,5 +19,8 @@ wheels/
 data/
 outputs/
 .cache/
+
+# Government records: downloaded files stay local (see govdata/README.md)
+govdata/**/raw/
 .pytest_cache/
 .ruff_cache/

@@ -1,13 +1,13 @@
 [project]
-name = "traffic-simulator"
+name = "population-simulator"
 version = "0.1.0"
-description = "A traffic simulator for Indian mixed traffic, built from scratch with open map data."
+description = "A population simulator for Indian cities: synthetic households living through a year, built from open and official data."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
 
 [project.scripts]
-traffic-simulator = "traffic_simulator:main"
+population-simulator = "population_simulator:main"
 
 [build-system]
 requires = ["uv_build>=0.10.4,<0.11.0"]

@@ -11,6 +11,13 @@ Status: in-flight. These are Sushrut's statements during the session, in order. 
    - what changes when a family has a car;
    - what changes if the entire population starts using public transport.
 
+6. Decisions made the same day (recorded in `decisions.md`): GitHub repo is `population-simulator`; the local folder stays `traffic-simulator`; commute burden covers time, money, income share, unpredictability and "all the issues", and should be "realistic".
+7. **Centre on people:** "i want to model a person's life.. i would rather model humans in various situations rather than anything else".
+8. **City-agnostic:** "the cities doesnt matter.. its like i get should add a snip of the map and then have multiple ways of visualising population distribution, income distribution, stores, etc..". This supersedes the per-city `cities/` folder idea. Open: what timescale "a person's life" means (a day vs years), and how "realistic" and "any map snip" are reconciled when local data is missing.
+9. **Timescale and validation:** "yes government surveys can be a good to cross verify with.. basically we model an year with a particular population distribution and then we can see whether the simulation numbers and the govt numbers align..". Claude's reading, not yet confirmed: a fixed population lives through one year (day-to-day and seasonal variation), and aggregate outputs are compared with official survey statistics. Open: whether life events happen within the year; which surveys build the model vs which check it, to avoid circular validation.
+10. **Life events with knobs (2026-10-04):** "we shall add knobs for all of those.. since we are trying to mimic the population realistic, we can use the data of cars' sold or increase of registered vehicles in that region if possible". Recorded in `decisions.md`.
+11. **All life events (2026-10-04):** "all of these should be included.. even the children graduating primary, secondary, jr. college, sr. college.. marriages, move-ins, move-outs for job, etc". Recorded in `decisions.md`.
+
 ## Evidence notes
 
 - [ui-platform-facts.md](ui-platform-facts.md)

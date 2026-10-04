@@ -1,4 +1,6 @@
-# Traffic Simulator
+# Population Simulator
+
+> Direction update (2026-10-04): the project is being refocused from a traffic microsimulator to simulating people's lives (households, life events, commute burden) for any map region, validated against official statistics. The documents below still describe the earlier traffic-first plan until `docs/PLAN.md` is rewritten; see `memory/scratch/household-first-formulation.md` and `memory/decisions.md`.
 
 A traffic simulator for Indian cities, with an independently implemented engine and open map data. The intended use is to explore daily congestion and compare traffic signals, public transport, pickup arrangements, and enforcement scenarios in places such as Bengaluru, Mumbai, and Hyderabad.
 
@@ -18,7 +20,7 @@ Requires Python 3.12 or newer and uv. The project currently has no application d
 
 ```sh
 uv sync --locked
-uv run --locked traffic-simulator
+uv run --locked population-simulator
 ```
 
 The command reports the scaffold's status. It does not run a traffic simulation. Future CLI commands in the plan are proposed interfaces.

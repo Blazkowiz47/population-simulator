@@ -225,11 +225,11 @@ Do not present an uncalibrated conflict score as a predicted accident count. Do 
 The only current command is the scaffold status command described in the README. These future interfaces are a design proposal:
 
 ```sh
-uv run traffic-simulator import-osm --input data/raw/region.osm.pbf --area data/area.geojson
-uv run traffic-simulator check-scenario --scenario data/scenarios/corridor
-uv run traffic-simulator run --scenario data/scenarios/corridor --seed 42
-uv run traffic-simulator compare --baseline outputs/baseline --alternative outputs/intervention
-uv run traffic-simulator serve --scenario data/scenarios/corridor
+uv run population-simulator import-osm --input data/raw/region.osm.pbf --area data/area.geojson
+uv run population-simulator check-scenario --scenario data/scenarios/corridor
+uv run population-simulator run --scenario data/scenarios/corridor --seed 42
+uv run population-simulator compare --baseline outputs/baseline --alternative outputs/intervention
+uv run population-simulator serve --scenario data/scenarios/corridor
 ```
 
 Preparation produces diagnostics and stops on invalid topology or unsupported schema versions. Runs resolve all inputs into a manifest before stepping. Reports read saved results. Editing an intervention creates a new scenario version rather than overwriting the baseline. A run can be reproduced without the viewer or a live provider.
