@@ -13,7 +13,10 @@ Use this directory for uncertain or in-flight project-only notes. Keep one topic
 - [commute-burden-facts.md](commute-burden-facts.md) (2026-10-03): income sources (PLFS 2025, HCES 2023-24), per-mode trip and ownership costs as of Oct 2026 (incl. free-bus schemes for women), burden metric definitions, value of time, equity reporting.
 - [any-region-data-facts.md](any-region-data-facts.md) (2026-10-03): open data for building synthetic people from any map snip (buildings, population grids, POIs, jobs, income proxies, schedules, life-course templates, basemaps, layer design, licence and India map-law traps).
 - [year-validation-facts.md](year-validation-facts.md) (2026-10-03): which year to simulate (2025 aligns best), independent official check targets, validation without circularity, representing a year with weighted day types, Indian calendar and rain facts.
-- [govdata-catalog.md](govdata-catalog.md) (2026-10-04): `govdata/` folder (no-republishing rules) and the official-portal survey behind `govdata/catalog.yaml` (104 datasets): reachability, terms, ward-level Census tables, manual steps for Sushrut, next actions. Uncommitted.
+- [govdata-catalog.md](govdata-catalog.md) (2026-10-04): `govdata/` folder (no-republishing rules) and the official-portal survey behind `govdata/catalog.yaml` (104 datasets): reachability, terms, ward-level Census tables, manual steps for Sushrut, next actions.
+- [education-and-timing-facts.md](education-and-timing-facts.md) (2026-10-04): state education stages, entry ages, 2025 board pass rates, AISHE GER and college directory, academic calendar, and the yearly timing of jobs, births, vehicle purchases and marriages.
+- [life-events-facts.md](life-events-facts.md) (2026-10-04): defaults and sources for vehicle acquisition (VAHAN no-CAPTCHA endpoints; household share of registrations; archive-based active fleet), births, deaths, marriage, migration, moves, household splits, labour transitions, wage events, retirement; MoSPI terms for foreign users.
+- [engine-ui-architecture.md](engine-ui-architecture.md) (2026-10-04): proposal: Python simulation (numpy arrays, multiprocessing, decide/resolve/commit days, keyed RNG), NiceGUI UI with one deck.gl map component, runner process connected by queues and run-folder files. Open: how the map works in NiceGUI.
 
 ## Routing
 

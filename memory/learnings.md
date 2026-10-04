@@ -12,6 +12,13 @@ Durable findings from this project. Keep this compact and useful for future work
 - Indian microscopic car-following evidence is concentrated on one Chennai corridor. The only open dataset with a clear licence is IIT Delhi/Noida drone data (Zenodo 10.5281/zenodo.17745347, CC BY 4.0). The 2014 Chennai Technion data states no licence.
 - movsim/traffic-simulation-de is GPL-3.0 and movsim/movsim is GPL-3.0-or-later: reference only, never copy.
 
+- NiceGUI 3.17.1 (MIT, Python 3.10–3.14) can host a JS map:
+  - A custom component is a `ui.element` subclass with `component='x.js'` (a Vue component).
+  - Python → JS: props plus `update()`, or `await run_method(...)`. JS → Python: `$emit` plus `.on(...)`.
+  - npm packages need `esm=` plus a rollup build. The alternative is vendoring prebuilt deck.gl 9.4.0, `@deck.gl/json` and MapLibre 5 bundles, which needs no Node.
+  - `run.cpu_bound` runs in a process pool (pickled functions); `run.io_bound` runs in a thread.
+  - Verified against NiceGUI's examples on 2026-10-04; see [engine-ui-architecture](scratch/engine-ui-architecture.md).
+
 ## Likely But Needs Verification
 
 - Mixed traffic, stopping obstruction, and junction blocking may change intervention rankings. This requires synthetic checks and local observations; no simulation evidence exists yet.
