@@ -2,7 +2,7 @@
 
 - Date: 2026-10-04
 - Node: macbookpro
-- Status: proposal from the rubberduck session. Not yet adopted into `docs/PLAN.md` or `docs/architecture.md`; waiting for Sushrut's go-ahead.
+- Status: **adopted 2026-10-04** (see `../decisions.md`); `docs/PLAN.md` and `docs/architecture.md` were rewritten around it. Open items: Windows/WebView2, snip drawing, offline basemap, performance at millions of points, Python 3.14 upgrade.
 - Sushrut's preferences:
   - Simulation in Python, using "multiprocessing pool, queues and threading options.. i would like that".
   - Asked what is better for the UI and how to connect both.
@@ -67,4 +67,4 @@ Sushrut: "how would the map work with NiceUI? because i see that the deck.gl map
 
 ## Next action
 
-Optional: a throwaway spike (NiceGUI native window + deck.gl hexagons from a Python-written file) to prove the map path on macOS. It needs NiceGUI and numpy, so it needs Sushrut's approval to add dependencies. Then rewrite `docs/PLAN.md` and `docs/architecture.md` around the decisions in this session. Needs Sushrut's go-ahead.
+Done 2026-10-04: the map spike proved the path on macOS (see `../runs.md` and `../learnings.md`). Remaining: Windows/WebView2, snip drawing, offline basemap, scale. Then rewrite `docs/PLAN.md` and `docs/architecture.md` around the decisions in this session. Needs Sushrut's go-ahead.

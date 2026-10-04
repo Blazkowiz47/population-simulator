@@ -4,6 +4,7 @@
 # Nothing listed here is committed to the repo; see govdata/README.md.
 
 checked_on: "2026-10-03"
+roles_updated_on: "2026-10-04"  # vehicle registration flows re-labelled build per decisions.md
 portals_unreachable_from_this_machine:
   - {url: "https://censusindia.gov.in/census.website/data/geographic", status: "HTTP 404 (2026-10-03)"}
   - {url: "https://www.data.gov.in/", status: "HTTP 503 (Akamai edge error page, 2026-10-03)"}
@@ -973,7 +974,7 @@ datasets:
     role_reason: "An official city vehicle stock to compare against the simulated household and commercial fleet. It is not needed to build ownership if Census asset tables are used."
     reachable: "www.data.gov.in HTTP 503 / data.gov.in ERR 7, 2026-10-03; Wayback has only 302 captures"
     confidence: "medium"
-    notes: "Registered stock is cumulative and rarely purged, so it overstates the on-road fleet. The latest city-level vintage on OGD appears to be 2020."
+    notes: "Registered stock is cumulative and rarely purged, so it overstates the on-road fleet. The latest city-level vintage on OGD appears to be 2020. | 2026-10-04: cumulative stock overstates the in-use fleet (no deregistration); use only after reconciling with VAHAN archive status (memory/scratch/life-events-facts.md)."
     verification: {verdict: "unverifiable", corrections: "Only the catalog's existence is confirmed: 'Registered Motor Vehicles In Million Plus Cities', contributor MoRTH, published on the portal 30/04/2014, NDSAP. The 'as on 31st March 2020' city resource and the claim that 2020 is the latest vintage are not verified."}
   - id: "morth-road-accidents-million-plus-cities-2021-ogd"
     portal_group: "ogd-and-states"
@@ -1089,8 +1090,8 @@ datasets:
     access: "open"
     licence: "Unknown (site unreachable); probably the standard GIGW copyright policy."
     redistribution: "unclear"
-    role: "check"
-    role_reason: "RTO-wise vehicle stock for Bengaluru, to compare against the simulated fleet."
+    role: "build"
+    role_reason: "Registration flows drive vehicle-acquisition events (decision 2026-10-04). Using them also as a vehicle check needs a hold-out designed before fitting (docs/PLAN.md §4). Previously: RTO-wise vehicle stock for Bengaluru, to compare against the simulated fleet."
     reachable: "ERR 35 TLS reset by peer; WebFetch ECONNRESET; 2026-10-03"
     confidence: "low"
     notes: "Landing URL comes from the search index only. Needs an Indian network vantage point to verify."
@@ -1140,8 +1141,8 @@ datasets:
     access: "free-registration"
     licence: "'Open Government License, India' per the AIKosh mirror and Telangana portal metadata (treated as GODL-India). GODL cl.6(a) excludes Personal Information."
     redistribution: "aggregates-only"
-    role: "check"
-    role_reason: "New registrations by RTA office, fuel and body type give a check on the simulated Hyderabad fleet's composition and growth."
+    role: "build"
+    role_reason: "Registration flows drive vehicle-acquisition events (decision 2026-10-04). Using them also as a vehicle check needs a hold-out designed before fitting (docs/PLAN.md §4). Previously: New registrations by RTA office, fuel and body type give a check on the simulated Hyderabad fleet's composition and growth."
     reachable: "data.telangana.gov.in ERR 28 timeout; AIKosh page HTTP 200 (download needs AIKosh registration); 2026-10-03"
     confidence: "medium"
     notes: "Record-level data including registration numbers, so only commit aggregates. The AIKosh mirror is https://aikosh.indiaai.gov.in/home/datasets/details/telangana_regional_transport_authority_rta_vehicle_registrations_dataset.html"
@@ -1162,7 +1163,7 @@ datasets:
     role_reason: "State-level vehicle stock (total 17,364,507) and accident totals give a coarse sanity check only."
     reachable: "HTTP 200, 2026-10-03"
     confidence: "high"
-    notes: "No Hyderabad or RTA breakdown on these pages."
+    notes: "No Hyderabad or RTA breakdown on these pages. | 2026-10-04: cumulative stock overstates the in-use fleet (no deregistration); use only after reconciling with VAHAN archive status (memory/scratch/life-events-facts.md)."
     verification: {verdict: "confirmed", corrections: "notes: the vehicles page also carries earlier snapshots in HTML comments (as on 28-02-2025, 31-01-2025, 31-05-2024), which form a short monthly series."}
   - id: "mh-mvd-vehicle-population-2024"
     portal_group: "ogd-and-states"
@@ -1182,7 +1183,7 @@ datasets:
     role_reason: "Gives the Greater Mumbai vehicle stock by category (two-wheelers 2,865,140; cars 1,386,754; autos 242,427; total 4,839,526) to compare against the simulated fleet."
     reachable: "HTTP 200 for pages; HEAD on PDFs returns 404 but GET/Range returns 206; 2026-10-03"
     confidence: "high"
-    notes: "Read locally from the scratchpad copy; not committed. Registered stock overstates the active fleet. HEAD gives a false 404 on this IIS server, so use a ranged GET to check files."
+    notes: "Read locally from the scratchpad copy; not committed. Registered stock overstates the active fleet. HEAD gives a false 404 on this IIS server, so use a ranged GET to check files. | 2026-10-04: cumulative stock overstates the in-use fleet (no deregistration); use only after reconciling with VAHAN archive status (memory/scratch/life-events-facts.md)."
     verification: {verdict: "confirmed", corrections: ""}
   - id: "mcgm-census-2011-ward-population"
     portal_group: "ogd-and-states"
@@ -1357,8 +1358,8 @@ datasets:
     access: "open"
     licence: "Parivahan Analytics Copyright Policy: \"Material featured on this site may be reproduced free of charge in any format or media without requiring specific permission. This is subject to the material being reproduced accurately ... Where the material is being published or issued to others, the source must be prominently acknowledged.\" (https://analytics.parivahan.gov.in/analytics/copyright)"
     redistribution: "allowed"
-    role: "check"
-    role_reason: "Monthly and annual new registrations by RTO, class and fuel are a direct target for simulated vehicle purchases in a year for Bengaluru and Mumbai RTOs."
+    role: "build"
+    role_reason: "Registration flows drive vehicle-acquisition events (decision 2026-10-04). Using them also as a vehicle check needs a hold-out designed before fitting (docs/PLAN.md §4). Previously: Monthly and annual new registrations by RTO, class and fuel are a direct target for simulated vehicle purchases in a year for Bengaluru and Mumbai RTOs."
     reachable: "200 for dashboard, report and copyright pages (2026-10-03)"
     confidence: "high"
     notes: "No login. Dashboard charts load from JSON GET endpoints without a CAPTCHA. Tabular CSV/XLSX export needs a CAPTCHA on every Apply, so the user must download by hand; do not automate CAPTCHA solving. Telangana joined VAHAN only from 15 March 2026, so Hyderabad history before that is missing. Active/archive filters let you approximate the active stock. The same portal has a Sarathi (driving licence) public dashboard (beta), a possible check for licence holders."
@@ -1374,8 +1375,8 @@ datasets:
     access: "unknown"
     licence: "Not checked (site unreachable). The Parivahan copyright policy above presumably applies."
     redistribution: "unclear"
-    role: "check"
-    role_reason: "Same registration counts as the new public report."
+    role: "build"
+    role_reason: "Registration flows drive vehicle-acquisition events (decision 2026-10-04). Using them also as a vehicle check needs a hold-out designed before fitting (docs/PLAN.md §4). Previously: Same registration counts as the new public report."
     reachable: "curl exit 28 timeout (60-75 s) and WebFetch ECONNREFUSED 164.100.69.3:443 (2026-10-03)"
     confidence: "low"
     notes: "Third-party scrapers suggest it historically allowed Excel export without login; not verified today. Prefer the analytics.parivahan.gov.in replacement."
@@ -1392,8 +1393,8 @@ datasets:
     access: "open"
     licence: "MVD Maharashtra copyright policy (Marathi, standard government-website text): material may be reproduced free of charge in any form without specific permission, provided it is accurate, not derogatory or misleading, and the source is prominently acknowledged; third-party copyright excluded. https://transport.maharashtra.gov.in/1051/Disclaimer-and-Policies"
     redistribution: "allowed"
-    role: "check"
-    role_reason: "City-level vehicle stock by category (two-wheelers, cars, auto-rickshaws, metered taxis, cabs, buses) and annual new registrations for Greater Mumbai and the Thane region are direct targets for a simulated year."
+    role: "build"
+    role_reason: "Registration flows drive vehicle-acquisition events (decision 2026-10-04). Using them also as a vehicle check needs a hold-out designed before fitting (docs/PLAN.md §4). Previously: City-level vehicle stock by category (two-wheelers, cars, auto-rickshaws, metered taxis, cabs, buses) and annual new registrations for Greater Mumbai and the Thane region are direct targets for a simulated year."
     reachable: "200; HEAD gives 404 but a ranged GET gives 206 (2026-10-03)"
     confidence: "high"
     notes: "Greater Mumbai: 5,134,466 vehicles at 31.03.2025; 294,940 new registrations in FY2024-25. The category table has Mumbai column headers in a different order from the summary table; verify column mapping. Stock counts are cumulative and overstate on-road vehicles."
@@ -1415,7 +1416,7 @@ datasets:
     role_reason: "Prior-year stock; the difference from 2025 gives net fleet growth to check simulated ownership change."
     reachable: "206 ranged GET (2026-10-03)"
     confidence: "high"
-    notes: "Greater Mumbai 31.03.2024: 4,839,526 vehicles, 242,427 auto-rickshaws, 44,713 metered taxis. Older yearly statistics (2016-17 to 2022-23) are in the same page's grid, served by postback. An auto-rickshaw permit-holder list (2017, 19.5 MB) contains personal records; do not use it."
+    notes: "Greater Mumbai 31.03.2024: 4,839,526 vehicles, 242,427 auto-rickshaws, 44,713 metered taxis. Older yearly statistics (2016-17 to 2022-23) are in the same page's grid, served by postback. An auto-rickshaw permit-holder list (2017, 19.5 MB) contains personal records; do not use it. | 2026-10-04: cumulative stock overstates the in-use fleet (no deregistration); use only after reconciling with VAHAN archive status (memory/scratch/life-events-facts.md)."
     verification: {verdict: "confirmed", corrections: ""}
   - id: "tg-transport-vehicle-strength-2025-03"
     portal_group: "transport"
@@ -1432,7 +1433,7 @@ datasets:
     role_reason: "State vehicle stock by category (17,364,507 total; 514,883 autos; 144,215 motor cabs); weak for Hyderabad because no RTO or district split."
     reachable: "200 (2026-10-03)"
     confidence: "high"
-    notes: "HTML table only, no file. Because Telangana joined VAHAN only in March 2026, this and the Telangana Statistical Abstract are the main pre-2026 sources for Hyderabad vehicles."
+    notes: "HTML table only, no file. Because Telangana joined VAHAN only in March 2026, this and the Telangana Statistical Abstract are the main pre-2026 sources for Hyderabad vehicles. | 2026-10-04: cumulative stock overstates the in-use fleet (no deregistration); use only after reconciling with VAHAN archive status (memory/scratch/life-events-facts.md)."
     verification: {verdict: "confirmed", corrections: ""}
   - id: "tg-transport-accidents-2014-2024"
     portal_group: "transport"
@@ -1462,8 +1463,8 @@ datasets:
     access: "unknown"
     licence: "Not verified (site unreachable). Karnataka sites on the state's common web template (as BMRCL's) say republication needs prior permission; check transport.karnataka.gov.in's own policy."
     redistribution: "unclear"
-    role: "check"
-    role_reason: "Bengaluru RTO-wise vehicle stock and monthly registrations are the main city-level vehicle check for Bengaluru."
+    role: "build"
+    role_reason: "Registration flows drive vehicle-acquisition events (decision 2026-10-04). Using them also as a vehicle check needs a hold-out designed before fitting (docs/PLAN.md §4). Previously: Bengaluru RTO-wise vehicle stock and monthly registrations are the main city-level vehicle check for Bengaluru."
     reachable: "curl exit 35, TLS reset after ClientHello; WebFetch ECONNRESET (2026-10-03)"
     confidence: "low"
     notes: "Existence known from search results only (PDFs about 444-447 KB per month). An Annual Report page also exists: https://transport.karnataka.gov.in/info-4/Reports/Annual+Report/en. Needs re-check from an Indian network."
@@ -1677,7 +1678,7 @@ datasets:
     role_reason: "Machine-readable version of the Year Book's million-plus city vehicle tables."
     reachable: "www.data.gov.in HTTP 503; data.gov.in curl exit 7; WebFetch 403 (2026-10-03)"
     confidence: "low"
-    notes: "Mirror of RTYB tables; data may stop at the 2019-20 edition. A related catalog, 'Road Accidents Profile of Selected Cities' (https://www.data.gov.in/catalog/road-accidents-profile-selected-cities), mirrors MoRTH city accident tables."
+    notes: "Mirror of RTYB tables; data may stop at the 2019-20 edition. A related catalog, 'Road Accidents Profile of Selected Cities' (https://www.data.gov.in/catalog/road-accidents-profile-selected-cities), mirrors MoRTH city accident tables. | 2026-10-04: cumulative stock overstates the in-use fleet (no deregistration); use only after reconciling with VAHAN archive status (memory/scratch/life-events-facts.md)."
     verification: {verdict: "unverifiable", corrections: "reference_period: the catalog description (search snippet) says 2001-2011 year-wise. Related data.gov.in resources from later RTYB editions run to 31.3.2016 (category-wise) and 31.3.2020 (non-transport, city-wise), not one continuous 2001-2020 series."}
   - id: "nfhs6-2023-24-india-state-factsheets"
     portal_group: "other-official"

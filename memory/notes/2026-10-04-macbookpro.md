@@ -40,6 +40,9 @@ tags: [population-simulation, india, life-events, official-statistics]
 - Command: `uv lock`; `uv sync --locked`; `uv run --locked population-simulator`.
 - Result: the lock now lists `population-simulator` 0.1.0; the CLI prints the scaffold status. No simulation exists yet.
 
+- Map spike (throwaway, outside the repo; files deleted after verification): three central-Mumbai panels (stores, buildings, synthetic people) in a NiceGUI native window via one MapLibre + deck.gl component. Python↔JS verified both ways. Sushrut: "I love this". Details in `../runs.md` and `../learnings.md`.
+- Rewrote `docs/PLAN.md` (canonical plan, M0–M9, decisions made and to make, first implementation task) and `docs/architecture.md` with a draft → three-lens review (decision fidelity, facts, consistency; 77 issues, 40 applied) → revise workflow. Then added two `decisions.md` rows (product direction; no republishing) and an engine/UI adoption row. Aligned the map-providers status note with the 2026-10-03 optional-Google decision. Rewrote the README, added redesign references with licences to `open-source-references.md`, re-labelled the six vehicle-registration flow datasets as `build` in `govdata/catalog.yaml`, and fixed stale Telangana VAHAN notes.
+
 ## Learnings
 
 - This Mac geolocates to Norway, and many Indian government portals block it: data.gov.in, Karnataka state sites, data.telangana.gov.in and ABDM. censusindia.gov.in, microdata.gov.in, mospi.gov.in and the eSankhyiki API are reachable.

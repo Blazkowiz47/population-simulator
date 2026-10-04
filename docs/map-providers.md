@@ -2,6 +2,15 @@
 
 Status: planning decision, with provider facts checked on **2026-10-03**. No Google account, billing address, API entitlement, key, or paid service has been inspected or configured. The interfaces below are proposed; they are not implemented capabilities.
 
+> **Status update (2026-10-04).** The product is now a desktop app for macOS and Windows that simulates people's lives for any map area (see [PLAN.md](PLAN.md)). Findings since this document was written (evidence: [`ui-platform-facts.md`](../memory/scratch/ui-platform-facts.md)):
+>
+> - Google ships no desktop Maps SDK. Flutter closed desktop support for its Google Maps plugin as not planned.
+> - The Maps JavaScript API works inside WebView2 but is not on Google's supported list for macOS WKWebView, and its API key cannot be meaningfully restricted to a desktop app.
+> - Map Tiles API terms allow video only as short promotional clips, so Google tiles cannot go into exported videos.
+> - §3.2.3(e) still constrains showing Google content next to non-Google maps under the standard terms.
+>
+> The current plan therefore uses OSM-derived basemaps (online OpenFreeMap for prototypes, offline Protomaps extracts for the app) and draws its own data layers. Under the 2026-10-03 decision, a Google display adapter remains optional and deferred; whether it is wanted on desktop is an open decision in [PLAN.md](PLAN.md) §8. The provider analysis and activation gates below remain valid for that decision.
+
 The project will import persistent simulation geometry from OpenStreetMap or other independently licensed data. Google Maps is a planned optional presentation/reference provider. These roles allow support for both map interfaces without promising that Google exposes an interchangeable road-and-building-network importer.
 
 ## Capability contract

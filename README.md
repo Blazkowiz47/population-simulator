@@ -1,40 +1,42 @@
 # Population Simulator
 
-> Direction update (2026-10-04): the project is being refocused from a traffic microsimulator to simulating people's lives (households, life events, commute burden) for any map region, validated against official statistics. The documents below still describe the earlier traffic-first plan until `docs/PLAN.md` is rewritten; see `memory/scratch/household-first-formulation.md` and `memory/decisions.md`.
+A desktop application (macOS and Windows) that simulates the people of a chosen map region living through one year: households, work and school, daily travel, money, and life events such as buying a vehicle, changing jobs, marriage, moving house and graduating. It reports household commute burden (time, money, share of income, unpredictability and crowding) and checks simulated totals against official statistics without republishing them. Indian cities (Bengaluru, Mumbai, Hyderabad) are the first focus; any map snip should work, with realism improving where local data exists.
 
-A traffic simulator for Indian cities, with an independently implemented engine and open map data. The intended use is to explore daily congestion and compare traffic signals, public transport, pickup arrangements, and enforcement scenarios in places such as Bengaluru, Mumbai, and Hyderabad.
-
-**Current state:** uv package scaffold, project memory, and development plan. The simulation engine and map integrations are planned; they are not implemented yet.
+**Current state:** a uv package scaffold with a status command, project memory, a catalogue of government datasets (`govdata/`), and the development plan. The simulation engine, data fetching and desktop app are planned, not implemented. A throwaway spike confirmed the desktop map approach (NiceGUI window with MapLibre and deck.gl layers); its code was deleted.
 
 ## Start here
 
-- [Development plan](docs/PLAN.md): scope, milestones, acceptance checks, and the first implementation task.
-- [Architecture](docs/architecture.md): proposed network, demand, movement, and validation design.
-- [Map providers](docs/map-providers.md): OSM data import and the distinct Google Maps integration path.
-- [Open-source references](docs/open-source-references.md): sources to study and licence boundaries.
-- [Project memory](memory/index.md): current status, decisions, and next action.
+- [Development plan](docs/PLAN.md): direction, scope, data strategy, milestones, acceptance gates, decisions and the first implementation task.
+- [Architecture](docs/architecture.md): data contracts, population model, daily life, life events, movement, outcomes, execution, UI and map, validation.
+- [Government data](govdata/README.md): rules for official datasets (downloads stay local; only manifests and our comparisons are tracked) and the [catalogue](govdata/catalog.yaml).
+- [Map providers](docs/map-providers.md): OSM data, basemaps, and the Google Maps terms analysis.
+- [Open-source references](docs/open-source-references.md): projects studied, candidate dependencies and their licences.
+- [Project memory](memory/index.md): current status, decisions and next action.
 
 ## Local setup
 
-Requires Python 3.12 or newer and uv. The project currently has no application dependencies.
+Requires Python 3.12 or newer and uv. The package has no runtime dependencies yet.
 
 ```sh
 uv sync --locked
 uv run --locked population-simulator
 ```
 
-The command reports the scaffold's status. It does not run a traffic simulation. Future CLI commands in the plan are proposed interfaces.
+The command reports the scaffold's status. The CLI commands in the plan are proposed interfaces.
 
-## Map support
+## Data and licences
 
-OSM is the planned source for persistent road and building networks. Google Maps is planned as an optional display interface for independently generated simulation overlays, subject to the applicable account and service terms. The standard Google Maps APIs do not provide the same regional network import capability as OSM; see the [provider design](docs/map-providers.md).
+- Government data is never republished. Downloaded files stay in git-ignored `govdata/<dataset-id>/raw/`; the repository tracks only the catalogue, per-dataset manifests and our own simulated-vs-official comparisons.
+- Map and place data come from open sources (OpenStreetMap, Overture Maps) and carry their attribution and licence flags. OSM-derived databases are ODbL (share-alike).
+- Synthetic people and households are labelled as synthetic; they are not real persons.
+- Maps of India must use Survey of India-conformant boundaries; city views omit national boundaries.
 
 ## Project conventions
 
-- Use uv for Python commands and dependency management.
-- Keep the engine usable without a browser, API key, or live map service.
-- Keep map attribution, data provenance, and assumptions with every scenario.
-- Keep generated data and outputs outside Git. Add small synthetic fixtures deliberately when implementing the engine.
+- Use uv for Python commands and dependency management; add dependencies only when a milestone needs them, and record their licences.
+- Keep the engine usable without the UI, a browser, an API key or a live map service; every run can be re-run headless from its manifest.
+- Keep provenance, assumptions and "as of" dates with every region, scenario and result.
+- Keep generated data and outputs outside Git; add small authored fixtures deliberately.
 - Follow [AGENTS.md](AGENTS.md) for project memory. [CLAUDE.md](CLAUDE.md) imports the same instructions.
 
-The project's software licence is still to be selected. Reference-project licences and map-data licences are recorded separately; this scaffold does not declare a licence for the new engine.
+The project's own software licence is still to be selected, so default copyright applies. Licences of reference projects and data sources are recorded separately.

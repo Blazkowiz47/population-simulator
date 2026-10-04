@@ -48,7 +48,7 @@ Verifier results by group: Census 8 confirmed / 7 corrected / 3 unverifiable; Mo
 - **Transport:**
   - MoRTH Road Accidents in India 2024 (Jun 2026; tables for 50 million-plus cities).
   - Maharashtra MVD Statistics 2024-25: Greater Mumbai's 4 RTOs hold 51.3 lakh vehicles, with 2.95 lakh new registrations in FY24-25.
-  - VAHAN analytics dashboard: no login, but a CAPTCHA per export, so it is a manual pull. Telangana joined VAHAN 15 Mar 2026.
+  - VAHAN analytics dashboard: no login, but a CAPTCHA per export, so it is a manual pull. The dashboard's chart JSON endpoints need no CAPTCHA (undocumented; see `life-events-facts.md`). Telangana joined VAHAN in March 2026, but its historical records are also on the dashboard (TG CY2025: 1,031,169), so Hyderabad 2025 can be calibrated.
   - PPAC state fuel sales xlsx (reproduction needs permission).
   - Telangana state vehicle totals only (no Hyderabad breakdown).
   - L&T Hyderabad Metro FY25-26 annual report: about 4.17 lakh riders/day (a corporate filing).

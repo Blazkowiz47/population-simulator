@@ -15,7 +15,7 @@ Status: in-flight scratch, 2026-10-03, macbookpro. Facts only. A workflow of 3 r
 ## Independent check targets (if not used as inputs)
 
 - **Ridership:** BMRCL, BMTC, TGSRTC, HMRL, BEST, suburban rail. Mostly via press, RTI or parliamentary answers, so record source and date and treat as approximate. Examples: Namma Metro record 11.2 lakh/day (10 Aug 2026); Mahalakshmi peak 37 lakh women's trips/day.
-- **New vehicle registrations by RTO and month:** the VAHAN4 report view exports Excel. Compare flows, not stocks: the Bengaluru stock of 12.59M is "registered and kept for use" and has a series break. Telangana joined VAHAN only around Mar 2026.
+- **New vehicle registrations by RTO and month:** the VAHAN4 report view exports Excel. Compare flows, not stocks: the Bengaluru stock of 12.59M is "registered and kept for use" and has a series break. Telangana joined VAHAN around Mar 2026, but its historical records are on the dashboard too (see `life-events-facts.md`).
 - **Fuel sales:** PPAC, state level.
 - **Road accidents:** NCRB and MoRTH agree for Bengaluru and Hyderabad but not Mumbai (348 vs 2,604). Pick one source per city.
 - **School enrolment:** public UDISE+ 2025-26 school-level files (pseudonymised) with ward, ULB, pincode and enrolment by class and gender, via OpenCity.

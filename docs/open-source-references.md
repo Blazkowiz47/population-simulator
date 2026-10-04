@@ -36,6 +36,50 @@ The authors explicitly state that calibration used the German national household
 
 IIT Bombay’s [SiMTraM](https://www.civil.iitb.ac.in/tvm/SiMTraM_Web/html/index.html) explored heterogeneous, non-lane-based traffic. Its [SourceForge distribution](https://sourceforge.net/projects/simtram/) lists **GPLv3**, with the last update **29 April 2013** and latest downloadable version **0.1.1**. It is useful historical context for mixed-traffic research. We found no recent public maintenance and will not use it as a current dependency or copy its code.
 
+## References added during the 2026-10-03/04 redesign
+
+The project moved from a traffic microsimulator to simulating people's lives (see [PLAN.md](PLAN.md)). These projects were studied for ideas or are candidate dependencies. Licences are as recorded in the research notes on the dates given there; recheck before adopting a dependency or reusing any code.
+
+### Population, activity and life-course models (study only)
+
+| Project | What we take from it | Licence |
+|---|---|---|
+| MATSim | Two-layer design (people's plans + movement), population samples with scaled capacity, fleet and parking modules | GPL-2.0-or-later |
+| BEAM | Ride-hail fleets, household vehicles, sample-size effects on fleets | GPL-3.0-or-later |
+| SILO | Yearly life events (ageing, marriage, births, jobs, car purchase, moving) as the life-course template | GPL-2.0 |
+| ActivitySim | Activity-based demand, vehicle ownership/allocation components, value of time by income | BSD-3-Clause |
+| PopulationSim | Seed-based population synthesis (list balancing) | BSD-3-Clause |
+| humanleague | Population synthesis from marginals only | MIT |
+| OMoSim | Daily activity schedules for any OSM/Overture region (parameter sets swappable) | MIT |
+| UrbanSim, OpenM++ | Land-use and generic microsimulation engines | BSD-3-Clause; MIT |
+| LIAM2, eqasim, actiTopp | Demographic microsimulation; census-to-diary matching; week-long schedules | GPL family |
+| mobiTopp | Week-long activity model | MIT |
+| POLARIS | Mesoscopic city-scale precedent | Executables licence-gated |
+| SimMobility | Integrated multi-scale precedent | Non-commercial licence |
+| UXsim | Python mesoscopic (platoon) traffic at city scale | MIT |
+| IISc-TIFR epidemic simulator | Synthetic households and workplaces for Mumbai and Bengaluru | Apache-2.0 |
+| BharatSim | Mumbai synthetic population method (IPU + CTGAN) | Framework CC-BY-SA; population generator unlicensed, so not reusable |
+| movsim/traffic-simulation-de, movsim/movsim | IDM and integration reference for the later microscopic engine | GPL-3.0; GPL-3.0-or-later |
+
+GPL-family and non-commercial projects are references only: no code is copied into this project. Their published data formats and ideas may be reused with citation.
+
+### Candidate dependencies (desktop app, data fetching, maps)
+
+| Component | Role | Licence |
+|---|---|---|
+| NiceGUI 3.17.1 | Desktop UI (native window via pywebview), knobs, charts | MIT |
+| deck.gl 9.4.0 | Map data layers (vendored prebuilt bundle) | MIT |
+| MapLibre GL JS 5 | Basemap renderer (vendored prebuilt bundle) | BSD-3-Clause |
+| Protomaps PMTiles | Offline basemap extracts | Code BSD-3, styles CC0, OSM-derived tiles ODbL |
+| overturemaps-py 1.0.2, DuckDB 1.5.6 | Fetch Overture data for a bounding box | MIT; MIT |
+| QuackOSM 0.19.0, pyosmium | Clip OSM PBF extracts | Apache-2.0; BSD-2-Clause |
+| h3-py 4.5.0, rasterio 1.5.2 | Hexagon indexing; raster reads | Apache-2.0; BSD-3-Clause |
+| routingkit-cch | Fast routing (customizable contraction hierarchies) | BSD-2-Clause |
+| pandana | Contraction-hierarchy routing | AGPL (avoid unless the licence question is settled) |
+| osmium-tool | PBF processing | GPL-3.0 (run as an external tool only, if at all) |
+
+pywebview's licence has not been recorded yet; record it before packaging. A throwaway spike on 2026-10-04 (see `../memory/runs.md`) used NiceGUI, pywebview, deck.gl and MapLibre successfully; nothing from it was kept.
+
 ## Implementation and provenance policy
 
 Implement our own engine from documented mechanisms and explicitly stated assumptions. Record the source of a borrowed idea beside the relevant design decision. A reference citation does not replace a license grant for copied code.

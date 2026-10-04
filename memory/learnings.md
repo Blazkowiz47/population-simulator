@@ -18,6 +18,12 @@ Durable findings from this project. Keep this compact and useful for future work
   - npm packages need `esm=` plus a rollup build. The alternative is vendoring prebuilt deck.gl 9.4.0, `@deck.gl/json` and MapLibre 5 bundles, which needs no Node.
   - `run.cpu_bound` runs in a process pool (pickled functions); `run.io_bound` runs in a thread.
   - Verified against NiceGUI's examples on 2026-10-04; see [engine-ui-architecture](scratch/engine-ui-architecture.md).
+- **Map spike confirmed the path (2026-10-04, see `runs.md`).** A NiceGUI native macOS window rendered MapLibre + deck.gl layers from Python-written binary files over localhost: 300k points in ~1 s, 28k polygons in ~0.4 s. Lessons for the real map component:
+  1. Call `map.resize()` from a ResizeObserver. NiceGUI sizes the element after mount; otherwise MapLibre falls back to 400×300 and the deck.gl overlay is 0×0.
+  2. Set deck.gl `pickingRadius` (~5 px). Exact-pixel clicks hit only 14/81 sample points on small building footprints.
+  3. Bind `ui.run(host="127.0.0.1")`. NiceGUI listens on all interfaces by default.
+  4. Restart the app after editing the component's JS.
+  5. With `_normalize: false`, SolidPolygonLayer binary polygons need closed rings in a consistent winding order (CW).
 
 ## Likely But Needs Verification
 
