@@ -1,6 +1,6 @@
 # Population Simulator
 
-A desktop application (macOS and Windows) that simulates the people of a chosen map region living through one year: households, work and school, daily travel, money, and life events such as buying a vehicle, changing jobs, marriage, moving house and graduating. It reports household commute burden (time, money, share of income, unpredictability and crowding) and checks simulated totals against official statistics without republishing them. Indian cities (Bengaluru, Mumbai, Hyderabad) are the first focus; any map snip should work, with realism improving where local data exists.
+A desktop application (macOS and Windows) that simulates the people of a chosen map region living through one year: households, work and school, daily travel, money, and life events such as buying a vehicle, changing jobs, marriage, moving house and graduating. It reports household commute burden (time, money, share of income, unpredictability and crowding) and checks simulated totals against official statistics without republishing them. Bengaluru is the first region, with Mumbai and Hyderabad next; any map snip should work, with realism improving where local data exists.
 
 **Current state:** a uv package scaffold with a status command, project memory, a catalogue of government datasets (`govdata/`), and the development plan. The simulation engine, data fetching and desktop app are planned, not implemented. A throwaway spike confirmed the desktop map approach (NiceGUI window with MapLibre and deck.gl layers); its code was deleted.
 
@@ -15,7 +15,7 @@ A desktop application (macOS and Windows) that simulates the people of a chosen 
 
 ## Local setup
 
-Requires Python 3.12 or newer and uv. The package has no runtime dependencies yet.
+Requires Python 3.14 or newer and uv (0.12 is used; `uv sync` installs Python 3.14 if it is missing). The package has no runtime dependencies yet.
 
 ```sh
 uv sync --locked

@@ -34,6 +34,7 @@ tags: [population-simulation, india, life-events, official-statistics]
   - a runner process connected by a progress/cancel queue and run-folder files.
 - Map in NiceGUI, also a proposal: one custom component (Python class + small Vue/JS file) wrapping MapLibre and deck.gl. Python sends deck.gl JSON layer specs; large layer data is served as files over local HTTP; the deck.gl and MapLibre prebuilt bundles are vendored, so no Node toolchain.
 - Moved a second stray agent download (`ka59.json`) out of the repo root.
+- Sushrut: "lets upgrade python first.. and lets lock bengaluru as the region to start with..". Recorded both in `../decisions.md`; updated `docs/PLAN.md` (§1, §5, M8, §8, §9: smoke-test box now central Bengaluru 77.565,12.955,77.615,12.990), `docs/architecture.md` (§8, §11, §12), README, `../devices.md` and the M1 brief (D8, D9 settled).
 
 ## Experiments / Runs
 
@@ -41,6 +42,7 @@ tags: [population-simulation, india, life-events, official-statistics]
 - Result: the lock now lists `population-simulator` 0.1.0; the CLI prints the scaffold status. No simulation exists yet.
 
 - Map spike (throwaway, outside the repo; files deleted after verification): three central-Mumbai panels (stores, buildings, synthetic people) in a NiceGUI native window via one MapLibre + deck.gl component. Python↔JS verified both ways. Sushrut: "I love this". Details in `../runs.md` and `../learnings.md`.
+- Python upgrade: `uv self update` (0.10.4 → 0.12.23); `uv python install 3.14` (3.14.8); `.python-version` 3.14; `requires-python = ">=3.14"`; `uv_build>=0.12.23,<0.13.0`; `uv lock` (lock revision 3 → 5); `uv sync --locked`; `uv run --locked population-simulator` prints the status; GIL enabled. An isolated 3.14 env installed and imported numpy 2.5.3, pyarrow 25.0.1, shapely 2.1.2, DuckDB 1.5.6, overturemaps 1.0.2, NiceGUI 3.17.1, pywebview 6.2.1 (cocoa backend) and pyobjc-core 12.2.2; no window was opened. `uv lock --check` with uv 0.10.4 also passes on the new lock.
 - Rewrote `docs/PLAN.md` (canonical plan, M0–M9, decisions made and to make, first implementation task) and `docs/architecture.md` with a draft → three-lens review (decision fidelity, facts, consistency; 77 issues, 40 applied) → revise workflow. Then added two `decisions.md` rows (product direction; no republishing) and an engine/UI adoption row. Aligned the map-providers status note with the 2026-10-03 optional-Google decision. Rewrote the README, added redesign references with licences to `open-source-references.md`, re-labelled the six vehicle-registration flow datasets as `build` in `govdata/catalog.yaml`, and fixed stale Telangana VAHAN notes.
 
 ## Learnings
@@ -54,5 +56,5 @@ tags: [population-simulation, india, life-events, official-statistics]
 
 ## Next
 
-- Sushrut to decide: approve a throwaway map spike (adds NiceGUI and numpy), and give the go-ahead to adopt the engine/UI proposal.
-- When the life-event and education research completes, rewrite `docs/PLAN.md` and `docs/architecture.md` for the population-simulator direction.
+- Sushrut to confirm the proposed milestone order (`docs/PLAN.md` §6), then start PLAN §9 (`region create` / `region check`).
+- Done earlier today: map spike approved and run; engine/UI adopted; plan and architecture rewritten; Bengaluru and Python 3.14 decided.

@@ -369,7 +369,7 @@ Measured on this M3 Max: about 4M simple pure-Python updates per second per core
 - `multiprocessing.freeze_support()` in packaged builds;
 - large arrays in `multiprocessing.shared_memory`, passed by name, shape and dtype rather than pickled.
 
-Threads handle I/O only (file writes, fetches), since Python 3.12's GIL limits CPU work in threads. Work is split by household chunks within a day, by day types, by seeds and scenarios (as independent runs), and later by map tiles for traffic. Free-threaded CPython 3.14 (PEP 779) is a later option (Open). Compiled kernels (Numba, PyO3 with rayon, Cython) come only after profiling. Two caveats: rayon reductions are unordered, and Numba's parallel mode installed from pip on macOS arm64 gets only the workqueue layer (inferred from Numba's documentation).
+Threads handle I/O only (file writes, fetches), since the GIL in the standard CPython 3.14 build limits CPU work in threads. Work is split by household chunks within a day, by day types, by seeds and scenarios (as independent runs), and later by map tiles for traffic. The free-threaded 3.14 build (PEP 779) is a later option (Open). Compiled kernels (Numba, PyO3 with rayon, Cython) come only after profiling. Two caveats: rayon reductions are unordered, and Numba's parallel mode installed from pip on macOS arm64 gets only the workqueue layer (inferred from Numba's documentation).
 
 **The day.**
 
@@ -469,7 +469,7 @@ Scale anchors ([city-scale-facts](../memory/scratch/city-scale-facts.md)):
 - Peak concurrent vehicles, estimated with Little's law (uncertain by about 2×): Bengaluru metro 0.22–0.45M, Greater Mumbai 0.15–0.45M, all of MMR 0.25–0.6M, Hyderabad metro 0.25–0.55M.
 - The peak hour carries about 12% of daily trips in Bengaluru and 5.5–6.6% in Mumbai.
 
-Sizes are declared before measuring: the test fixture, the first region, and a synthetic scale test at full-Bengaluru order (about 1.3 crore persons). Map layers are measured at 1M points and at the first region's full synthetic population. Targets are set after the first measurement.
+Sizes are declared before measuring: the test fixture, the first region (Bengaluru; study area still to make), and a synthetic scale test at full-Bengaluru order (about 1.3 crore persons). Map layers are measured at 1M points and at the first region's full synthetic population. Targets are set after the first measurement.
 
 | Milestone | Measure on named hardware | Gate |
 |---|---|---|
@@ -492,8 +492,7 @@ Outstanding decisions are listed in [PLAN.md §8](PLAN.md); sections affected he
 
 | Decision | Sections |
 |---|---|
-| First region and first local data pack; how the 2026-10-03 India decision applies | §2.1, §3 |
-| Python version; uv upgrade | §8 |
+| Bengaluru study area and the contents of its first local data pack | §2.1, §3 |
 | Trips leaving or entering the snip (buffer, external zones) | §2.1, §4, §6 |
 | Simulated year | §5.1; price tables in §4 |
 | 2011-ward crosswalk; population projection | §3.2 |

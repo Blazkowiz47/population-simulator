@@ -39,8 +39,8 @@ Status: in-flight scratch, gathered 2026-10-03 on macbookpro. Nothing here is ad
 - **D5 Initial commit before M1?** In either case, record the src-tree sha256 and a dirty flag in run.json.
 - **D6 Exit:** free outflow with exit accounting. Exit capacity waits for M3 receiving-space work.
 - **D7 Scope:** M1 is longitudinal-only. y and width are in the schema but held constant.
-- **D8 uv upgrade:** local uv 0.10.4 vs latest 0.12.22. The 0.12.0 changelog reports no build-backend config breaks; widen to `uv_build>=0.12.22,<0.13`. Do it as its own step with a relock, because lockfile compatibility is only guaranteed within a uv minor version. A stale managed x86_64 CPython 3.8 makes `uv python list` fail; that is machine-level cleanup for Sushrut.
-- **D9 Python version:** SPEC 0 recommends dropping 3.12 in 2026 Q4. Stay on 3.12 for M1 and decide before M2.
+- **D8 uv upgrade:** local uv 0.10.4 vs latest 0.12.22. The 0.12.0 changelog reports no build-backend config breaks; widen to `uv_build>=0.12.22,<0.13`. Do it as its own step with a relock, because lockfile compatibility is only guaranteed within a uv minor version. A stale managed x86_64 CPython 3.8 makes `uv python list` fail; that is machine-level cleanup for Sushrut. Settled 2026-10-04: uv 0.12.23, `uv_build>=0.12.23,<0.13.0`, relocked (`../decisions.md`).
+- **D9 Python version:** SPEC 0 recommends dropping 3.12 in 2026 Q4. Stay on 3.12 for M1 and decide before M2. Settled 2026-10-04: Python 3.14 (`../decisions.md`).
 
 ## 3. Proposed M1 engine design
 

@@ -21,7 +21,7 @@ Build a desktop application that simulates the people of a chosen region living 
 - **No republishing of government data:** "we won't be republishing.. we will state that our simulation numbers match".
 - **An independent engine in Python**, with open-source projects as references only. Sushrut asked for "multiprocessing pool, queues and threading options".
 
-Proposed (not yet confirmed): under the any-region direction, the 2026-10-03 India decision means Indian cities get the first local data packs; official sources have been surveyed for Bengaluru, Mumbai and Hyderabad.
+**Bengaluru is the first region** (Decided 2026-10-04: "lets lock bengaluru as the region to start with"). Its local data pack comes first, so under the any-region direction the 2026-10-03 India decision applies as proposed for data: Indian cities get the first local data packs. Official sources have also been surveyed for Mumbai and Hyderabad. Moving mixed-traffic behaviour to M8 is part of the proposed milestone order, which is not yet confirmed (§6).
 
 **What changed from the 2026-10-03 plan.** That plan started with one corridor and a microscopic IDM car-following engine (old M1: a straight-road fixture), building towards a calibrated Indian corridor. Three things moved the project:
 
@@ -100,7 +100,7 @@ Open: which further issues count towards burden (candidates: access walk, heat a
 
 ## 5. Engineering approach
 
-The design in [engine-ui-architecture.md](../memory/scratch/engine-ui-architecture.md) is **Adopted (2026-10-04)** and recorded in `decisions.md`: Sushrut liked the map spike ("I love this") and asked for the plan to be updated. Its open items stay open: Windows/WebView2, snip drawing, the offline basemap, performance at millions of points and the Python 3.14 upgrade. [architecture.md](architecture.md) holds the detailed design; this section summarises it.
+The design in [engine-ui-architecture.md](../memory/scratch/engine-ui-architecture.md) is **Adopted (2026-10-04)** and recorded in `decisions.md`: Sushrut liked the map spike ("I love this") and asked for the plan to be updated. Its open items stay open: Windows/WebView2, snip drawing, the offline basemap and performance at millions of points. The Python 3.14 upgrade was done on 2026-10-04 (§8). [architecture.md](architecture.md) holds the detailed design; this section summarises it.
 
 **Engine (Adopted; details in [architecture §8](architecture.md)).** People and households are stored as numpy columns, not per-person objects. CPU work runs in a multiprocessing pool, with threads only for I/O; macOS and Windows use the spawn start method. Each simulated day runs **decide, resolve, commit**: households decide in parallel from yesterday's frozen state, one deterministic pass resolves competing claims (flats, jobs, school seats, bus seats, road space), and then the day is committed. Random draws are keyed by run seed, household and day, not by worker, and results merge in a fixed order, so outputs do not depend on worker count or scheduling. Bit-identical results across macOS and Windows are not claimed. The year uses weighted day types; a cheap household and money layer can run every day or month, with detailed travel only on representative days (Proposed).
 
@@ -157,7 +157,7 @@ uv run --locked population-simulator app
 
 `run --rerun` re-runs the resolved scenario, seed and data-pack manifests recorded in a `run.json`, and warns if the `uv.lock` hash or source revision differs.
 
-**Dependencies.** The package has none today; the spike used NiceGUI, pywebview, pyarrow, shapely and numpy. Add each when its milestone needs it, and record its licence in [open-source-references.md](open-source-references.md) when adding it. Python stays on 3.12 until the version decision (§8); free-threaded CPython 3.14 (PEP 779) is a reason to move later.
+**Dependencies.** The package has none today; the spike used NiceGUI, pywebview, pyarrow, shapely and numpy. Add each when its milestone needs it, and record its licence in [open-source-references.md](open-source-references.md) when adding it. The project runs on CPython 3.14 (the standard build, which keeps the GIL) with uv 0.12 (§8). On 2026-10-04 the planned stack (numpy, pyarrow, shapely, DuckDB, overturemaps, NiceGUI, and pywebview with its macOS backend) installed and imported on 3.14.8; NiceGUI's native window is first exercised on 3.14 in M3. The free-threaded build (PEP 779) stays a later option ([architecture §8](architecture.md)). Python 3.15 was still a release candidate on 2026-10-04, and pyarrow, shapely and DuckDB had no 3.15 wheels.
 
 ## 6. Milestones and acceptance gates
 
@@ -215,7 +215,7 @@ Acceptance: reports separate data used to build, data used as constraints and in
 
 ### M8 — Microscopic focus-area engine
 
-The former M1: a deterministic straight-road fixture, then junctions, signals, wrong-way driving, junction blocking, pickups and enforcement for chosen focus areas, coupled to the meso model. Its decisions, plan defects, test values and placeholder parameters are in [m1-context-brief.md](../memory/scratch/m1-context-brief.md); line references in that brief point to the docs at commit `ca8246a`. D4 (runtime dependencies) is settled by the adopted engine design, and D5 (initial commit) by the existing commits. D8 (uv upgrade) and D9 (Python version) apply now (§8, §9). Only D1–D3, D6 and D7 wait for M8.
+The former M1: a deterministic straight-road fixture, then junctions, signals, wrong-way driving, junction blocking, pickups and enforcement for chosen focus areas, coupled to the meso model. Its decisions, plan defects, test values and placeholder parameters are in [m1-context-brief.md](../memory/scratch/m1-context-brief.md); line references in that brief point to the docs at commit `ca8246a`. D4 (runtime dependencies) is settled by the adopted engine design, and D5 (initial commit) by the existing commits. D8 (uv upgrade) and D9 (Python version) were settled on 2026-10-04 (§8). Only D1–D3, D6 and D7 wait for M8.
 
 Acceptance: the analytic, conservation, determinism and step-halving checks in that brief; vehicles crossing the meso/micro boundary are conserved and spillback passes back. No published method was found that generates a lateral entry position for lane-free traffic, so this boundary is research work.
 
@@ -244,8 +244,8 @@ The principles below are Proposed except where marked. Methods, sources and cand
 | Date | Decision |
 |---|---|
 | 2026-10-03 | Independent engine; open-source projects are references only |
-| 2026-10-03 | Focus on Indian mixed traffic, including Bengaluru, Mumbai and Hyderabad; pilot open. How this applies under the any-region direction is still to make (below). Proposed reading: these cities get the first local data packs, and mixed-traffic behaviour moves to M8 |
-| 2026-10-03 | uv-packaged Python 3.12+ application |
+| 2026-10-03 | Focus on Indian mixed traffic, including Bengaluru, Mumbai and Hyderabad; pilot open. Under the any-region direction, these cities get the first local data packs, starting with Bengaluru (2026-10-04). Moving mixed-traffic behaviour to M8 is proposed with the milestone order (§6) |
+| 2026-10-03 | uv-packaged Python application (3.12+ at the time; 3.14 from 2026-10-04) |
 | 2026-10-03 | OSM network import; any Google Maps integration is a separate, optional display adapter |
 | 2026-10-03 / 2026-10-04 | Public repository `population-simulator` on `master` (2026-10-03); local folder stays `traffic-simulator` (2026-10-04) |
 | 2026-10-03 | Desktop only (macOS, Windows); knobs for everything, including time steps and behaviours; population-based; model people's lives; any map snip; one year cross-checked with government figures (Sushrut's statements in the [direction note](../memory/scratch/direction-2026-10-03.md)) |
@@ -254,16 +254,15 @@ The principles below are Proposed except where marked. Methods, sources and cand
 | 2026-10-04 | All life events are in scope, including education stages (primary to senior college), marriages, and moving in and out of the region for jobs; the population is open at the region boundary |
 | 2026-10-04 | Package `population_simulator`; distribution and CLI `population-simulator` |
 | 2026-10-04 | Government data is never republished; we state only whether our numbers match (Sushrut: "we won't be republishing.. we will state that our simulation numbers match"; rules in [govdata/README.md](../govdata/README.md)) |
-| 2026-10-04 | Engine/UI design adopted: Python engine on numpy arrays with a multiprocessing pool, decide/resolve/commit days and keyed random draws; a runner process; a NiceGUI desktop UI; one MapLibre + deck.gl map component; connected only by the scenario schema, run-folder files and progress/cancel messages. Open items: Windows/WebView2, snip drawing, offline basemap, performance at millions of points, Python 3.14 upgrade. Revisit if Windows testing or scale tests fail |
+| 2026-10-04 | Engine/UI design adopted: Python engine on numpy arrays with a multiprocessing pool, decide/resolve/commit days and keyed random draws; a runner process; a NiceGUI desktop UI; one MapLibre + deck.gl map component; connected only by the scenario schema, run-folder files and progress/cancel messages. Open items: Windows/WebView2, snip drawing, offline basemap, performance at millions of points (the Python 3.14 upgrade was done the same day). Revisit if Windows testing or scale tests fail |
+| 2026-10-04 | First region: Bengaluru ("lets lock bengaluru as the region to start with"). It gets the first local data pack; its study area is still to make (below) |
+| 2026-10-04 | Python 3.14 ("lets upgrade python first"): CPython 3.14.8, standard build; `requires-python = ">=3.14"`; uv 0.12.23 with `uv_build>=0.12.23,<0.13.0`; relocked. Settles M1-brief D8 and D9 |
 
 **Still to make:**
 
 | Decision | Why it matters | When needed |
 |---|---|---|
-| First region and first local data pack | Sets what is fetched and checked first; Bengaluru has the richest open inputs, Hyderabad the cleanest official bus GTFS; Hyderabad 2025 registrations are on VAHAN | Before M1 acceptance |
-| How the 2026-10-03 Indian-mixed-traffic decision applies under the any-region direction | Sets where local data packs come first | With the first-region choice |
-| Python version (3.12 vs 3.13/3.14, including free-threaded builds; SPEC 0 recommends dropping 3.12 in 2026 Q4) | Parallelism and dependency support; the Python 3.14 upgrade is an open item of the engine/UI decision | Before §9 adds the first runtime dependency |
-| uv upgrade and the `uv_build` bound (M1 brief D8; local uv 0.10.4, `uv_build>=0.10.4,<0.11.0`) | Lockfile compatibility holds only within a uv minor version | Before §9 adds dependencies |
+| Bengaluru study area (city corporation area, Bengaluru Urban district or a smaller snip) and the contents of its first local data pack | Sets which ward, district and RTO figures apply and which crosswalks are needed; Bengaluru has no published RTO jurisdiction list (architecture §5) | Before M1 acceptance |
 | Treatment of trips leaving or entering the snip (buffer, external zones) | The commute burden of a small snip depends on it | Before M2 job assignment |
 | Simulated year (2025 suggested: PLFS 2025 is the first calendar-year round, with city figures) | Fixes data vintages, prices and the calendar | Before M2 |
 | Crosswalk from 2011 wards to current units; population projection to the simulated year | Ward marginals feed the population, and ward boundaries have changed since 2011 | Before M2 |
@@ -287,13 +286,13 @@ The principles below are Proposed except where marked. Methods, sources and cand
 
 ## 9. First implementation task
 
-A small, verifiable first slice of M1 (Proposed). Before step 3 adds the first runtime dependencies, settle the Python version and the uv upgrade (§8).
+A small, verifiable first slice of M1 (Proposed). The Python version and the uv upgrade were settled on 2026-10-04 (§8).
 
 1. Anchor the `.gitignore` rules as `/data/` and `/outputs/`, and add pytest with a `tests/` folder. Add `.hypothesis/` and `.benchmarks/` to `.gitignore` when those tools are adopted.
 2. Add the CLI subcommands `region create` and `region check`, using `main(argv) -> int`; the bare command still prints the status.
 3. `region create --name <name> --bbox …` writes `data/regions/<name>/region.json` (study area, context buffer, CRS, IANA timezone, creation time), fetches Overture buildings and places for the buffered box from a pinned release, and stores them as GeoParquet with a `manifest.json` (release, URL, retrieval time, row counts, content hash, writer library versions, licence, attribution, share-alike and non-commercial flags). Pin the latest Overture release at fetch time (the facts note used 2026-09-23) and record it. The content hash is the sha256 of rows sorted by Overture `id` with a fixed column order. The buffer width is a parameter until its method is decided (§8).
 4. `region check` verifies manifests against files, lists licence flags, and fails if any region file or anything under `govdata/**/raw/` is tracked by Git.
-5. Tests run offline on a tiny authored fixture in `tests/fixtures/`: `region create --from-dir <path>` reads pre-fetched files, so tests exercise it without the network. As a manual smoke test, reuse the spike's central-Mumbai box (72.820,19.010,72.860,19.065) without treating the spike's counts as expected values. This does not choose the first region.
+5. Tests run offline on a tiny authored fixture in `tests/fixtures/`: `region create --from-dir <path>` reads pre-fetched files, so tests exercise it without the network. As a manual smoke test, use a central-Bengaluru box covering Majestic, KR Market, Cubbon Park and MG Road (77.565,12.955,77.615,12.990; Proposed). It does not choose the study area (§8).
 
 Done when the tests pass, a second `region create` for the same release reproduces the row counts and content hashes, and the run is recorded in `memory/runs.md`. This adds the first runtime dependencies (overturemaps-py or DuckDB, plus pyarrow); record each new dependency's licence in [open-source-references.md](open-source-references.md) when adding it. In parallel, M3's map component can start by rebuilding the spike's component under `ui/` on region layers, with the spike lessons (architecture §9) as checks; its runner integration waits for M2's run-folder format v0.
 

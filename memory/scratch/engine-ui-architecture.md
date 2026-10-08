@@ -2,7 +2,7 @@
 
 - Date: 2026-10-04
 - Node: macbookpro
-- Status: **adopted 2026-10-04** (see `../decisions.md`); `docs/PLAN.md` and `docs/architecture.md` were rewritten around it. Open items: Windows/WebView2, snip drawing, offline basemap, performance at millions of points, Python 3.14 upgrade.
+- Status: **adopted 2026-10-04** (see `../decisions.md`); `docs/PLAN.md` and `docs/architecture.md` were rewritten around it. Open items: Windows/WebView2, snip drawing, offline basemap, performance at millions of points. The Python 3.14 upgrade was done on 2026-10-04 (`../decisions.md`).
 - Sushrut's preferences:
   - Simulation in Python, using "multiprocessing pool, queues and threading options.. i would like that".
   - Asked what is better for the UI and how to connect both.
